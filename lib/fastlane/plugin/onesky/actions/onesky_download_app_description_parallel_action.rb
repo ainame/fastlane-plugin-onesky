@@ -17,7 +17,8 @@ module Fastlane
             # see https://github.com/onesky/api-documentation-platform/blob/f4621ed1fa2fd6372d0abba4fef3dbf83ec43587/resources/translation.md#app-description---export-translations-of-app-store-description-in-json
             json = project.export_app_description(locale: locale)
             if json.nil? || json.empty?
-              return UI.error "Couldn't download app description for '#{locale}'"
+              UI.message "Couldn't download app description for '#{locale}'"
+              Thread.exit
             end
 
             resp = JSON.parse(json)

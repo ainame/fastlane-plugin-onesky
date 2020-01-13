@@ -15,7 +15,12 @@ module Fastlane
 
           threads << Thread.new do
             # see https://github.com/onesky/api-documentation-platform/blob/f4621ed1fa2fd6372d0abba4fef3dbf83ec43587/resources/translation.md#app-description---export-translations-of-app-store-description-in-json
-            resp = JSON.parse(project.export_app_description(locale: locale))
+            json = project.export_app_description(locale: locale)
+            if json.nil? || json.empty?
+              return UI.warn "Couldn't download app description for '#{locale}'"
+            end
+
+            resp = JSON.parse(json)
             resp['data'].each do |key, value|
               if mapped_filename = self.class.map_filename(key)
                 path = File.join(destination, mapped_filename)

@@ -23,7 +23,7 @@ module Fastlane
 
             resp = JSON.parse(json)
             resp['data'].each do |key, value|
-              if mapped_filename = self.class.map_filename(key)
+              if mapped_filename = map_filename(key)
                 path = File.join(destination, mapped_filename)
                 File.open(path, 'w') { |file| file.write(value) }
               else

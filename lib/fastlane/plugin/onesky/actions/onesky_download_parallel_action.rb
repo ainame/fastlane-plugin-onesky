@@ -25,7 +25,7 @@ module Fastlane
       end
 
       def self.authors
-        ['danielkiedrowski']
+        ['ainame']
       end
 
       def self.available_options

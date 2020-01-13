@@ -90,14 +90,6 @@ module Fastlane
                                        verify_block: proc do |value|
                                          raise 'No locale for translation given'.red unless value and !value.empty?
                                        end),
-          FastlaneCore::ConfigItem.new(key: :filename,
-                                       env_name: 'ONESKY_DOWNLOAD_FILENAME',
-                                       description: 'Name of the file to download the localization for',
-                                       is_string: true,
-                                       optional: false,
-                                       verify_block: proc do |value|
-                                         raise "No filename given. Please specify the filename of the file you want to download the translations for using `filename: 'filename'`".red unless value and !value.empty?
-                                       end),
           FastlaneCore::ConfigItem.new(key: :destination_dir,
                                        env_name: 'ONESKY_DOWNLOAD_DESTINATION_DIR',
                                        description: 'Destination directory to put the downloaded files to',
